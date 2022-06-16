@@ -1,12 +1,11 @@
 <template><div>myinfo page
-<ChangeMyInfo/></div></template>
+<MyinfoContainer/></div></template>
 <script>
-import ChangeMyInfo from "@/container/myInfo/ChangeMyInfo";
-
+import MyinfoContainer from "@/container/myInfo/MyinfoContainer";
 export  default {
 
   components:{
-    ChangeMyInfo
+    MyinfoContainer
 
 
   }

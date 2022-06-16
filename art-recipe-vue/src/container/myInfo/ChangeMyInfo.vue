@@ -20,7 +20,6 @@ export default {
     changeModal(){
       this.showModal = !this.showModal
     }
-
   }
 }
 </script>
