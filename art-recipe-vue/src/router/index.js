@@ -1,5 +1,5 @@
 import {createWebHistory, createRouter} from "vue-router";
-import LandingPage from '../views/LandingPage';
+import LandingPage from '../views/MainHome';
 import MyInfo from "@/views/MyInfo";
 
 const routes = [

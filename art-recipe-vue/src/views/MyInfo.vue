@@ -1,5 +1,15 @@
-<template><div>myinfo page</div></template>
+<template><div>myinfo page
+<ChangeMyInfo/></div></template>
 <script>
-export  default {}
+import ChangeMyInfo from "@/container/myInfo/ChangeMyInfo";
+
+export  default {
+
+  components:{
+    ChangeMyInfo
+
+
+  }
+}
 </script>
 <style></style>

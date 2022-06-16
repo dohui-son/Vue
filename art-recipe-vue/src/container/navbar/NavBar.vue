@@ -2,7 +2,6 @@
   <nav class="navbar">
     <span class="navbar_logo">
       <router-link to="/">LOGO</router-link>
-
     </span>
     <span class="navbar_togglebtn" @click="openMenu">toggle</span>
    <ul class="navbar_menu" >
@@ -15,9 +14,11 @@
     </ul>
     <ul class="navbar_icons">
       <li><router-link to="/myinfo">myinfo</router-link></li>
-      <li><GoogleLogin /></li></ul>
+      <li><GoogleLogin /></li>
+    </ul>
   </nav>
 </template>
+
 <script>
 import GoogleLogin from "@/components/GoogleLogin";
 export default {
@@ -44,7 +45,6 @@ export default {
   padding: 8px;
   color: white;
   font-size: 1.5rem;
-
 }
 .navbar_logo{
   font-size: 20px;
@@ -57,7 +57,7 @@ export default {
 .navbar_icons{
   display: flex;
   list-style: none;
- margin-left: 5px ;
+  margin-left: 5px ;
 }
 
 .mobile_navbar_menu{
