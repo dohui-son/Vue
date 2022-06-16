@@ -1,13 +1,11 @@
 <template>
-  <button id="show-modal" @click="showModal = true" >ChangeInfo</button>
+  <button id="show-modal" @click="changeModal">Change Info</button>
+  <ChangeMyInfoModal :show="showModal" @close="showModal = false">
+    <template #header>
+      <h3>custom header</h3>
+    </template>
+  </ChangeMyInfoModal>
 </template>
-<Teleport to="body">
-<ChangeMyInfoModal :show="showModal" @close="showModal=false">
-  <template #header>
-    <h3>custom header</h3>
-  </template>
-</ChangeMyInfoModal>
-</Teleport>
 
 <script>
 import ChangeMyInfoModal from "@/container/myInfo/ChangeInfoModal";
@@ -19,8 +17,8 @@ export default {
     }
   },
   methods:{
-    openModal:{
-      this.showModal = true
+    changeModal(){
+      this.showModal = !this.showModal
     }
 
   }

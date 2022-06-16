@@ -4,26 +4,35 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header">회원정보 수정</slot>
-            <div class="modal-footer">
-                <slot name="footer">default footer
-                  <button
-                  class="modal-default-button" @click="$emit('close')">
-                    완료
-                  </button>
-                </slot>
-            </div>
-        </div>
+            <slot name="header">회원 정보 수정</slot>
+          </div>
+
+          <div class="modal-body">
+            <slot name="body">개인 정보 수정</slot>
+          </div>
+
+          <div class="modal-footer">
+            <slot name="footer">
+              default footer
+              <button
+                  class="modal-default-button"
+                  @click="$emit('close')"
+              > OK </button>
+            </slot>
+          </div>
         </div>
       </div>
     </div>
   </Transition>
 </template>
-<script>
 
+<script>
 export default {
   props:{
-    show:Boolean
+    show:{
+      required:true,
+      type:Boolean
+    }
   }
 }
 </script>
@@ -59,7 +68,7 @@ export default {
 
 .modal-header h3 {
   margin-top: 0;
-  color: #42b983;
+  color: lightgray;
 }
 
 .modal-body {
