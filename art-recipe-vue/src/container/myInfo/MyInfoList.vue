@@ -11,6 +11,7 @@
 export default {
   props: {
     memberInfo: {
+      required:true,
       type: Object,
     },
   },

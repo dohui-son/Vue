@@ -4,20 +4,27 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header">회원 정보 수정</slot>
+            <slot name="header">{{memberInfo.name}} 님 </slot>
           </div>
 
           <div class="modal-body">
-            <slot name="body">개인 정보 수정</slot>
+            <slot name="body">
+              SNS URL
+              <input type="url" autocomplete="off" v-model.lazy.trim="newMyInfo.sns"/>
+            </slot>
+            <br/>
+            <slot name="body">
+              Description
+              <input type="text" autocomplete="off" v-model.lazy.trim="newMyInfo.desc"/>
+            </slot>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
-              default footer
-              <button
-                  class="modal-default-button"
-                  @click="$emit('close')"
-              > OK </button>
+              {{alertMsg}}
+              <button class="modal-default-button" @click="$emit('close')">
+                save
+              </button>
             </slot>
           </div>
         </div>
@@ -28,15 +35,37 @@
 
 <script>
 export default {
-  props:{
-    show:{
-      required:true,
-      type:Boolean
-    }
-  }
-}
-</script>
+  props: {
+    show: {
+      required: true,
+      type: Boolean,
+    },
+    memberInfo: {
+      required: true,
+      type: Object,
+    },
+  },
+  data() {
+    return {
+      newMyInfo: this.memberInfo,
+      alertMsg:""
+    };
+  },
+  methods:{
+    submitTest(){
+      if(this.newMyInfo && this.newMyInfo === this.memberInfo){
+        alert("수정된 정보가 없습니다.");
+      }
+      else if(this.newMyInfo.sns && this.newMyInfo.sns !== this.memberInfo.sns ){
+        // sns url 검증
+        this.alertMsg="유효한 url을 입력해주세요."
+      }
 
+    }
+
+  }
+};
+</script>
 
 <style>
 .modal-mask {
@@ -57,11 +86,12 @@ export default {
 }
 
 .modal-container {
-  width: 300px;
+  width: 70%;
+  height: 50%;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
 }
@@ -77,8 +107,8 @@ export default {
 
 .modal-default-button {
   float: right;
-}
 
+}
 
 .modal-enter-from {
   opacity: 0;
