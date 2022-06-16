@@ -1,31 +1,37 @@
-
 <template>
   <nav class="navbar">
-    <div class="navbar_logo">
+    <span class="navbar_logo">
       <router-link to="/">LOGO</router-link>
-    </div>
+
+    </span>
+    <span class="navbar_togglebtn" @click="openMenu">toggle</span>
    <ul class="navbar_menu" >
-     <li><a href="#">searching bar</a></li>
-     <li><a href="#"><router-link to="/myinfo">myinfo</router-link></a></li>
+     <li>searching bar</li>
    </ul>
-    <ul class="navbar_logo"><GoogleLogin /></ul>
-    <a  href="#" class="navbar_togglebtn" @click="openMenu">toggle</a>
+    <ul v-if="isOpen" class="mobile_navbar_menu" >
+      <li>mobile searching bar</li>
+      <li><router-link to="/myinfo">myinfo</router-link></li>
+      <li><GoogleLogin /></li>
+    </ul>
+    <ul class="navbar_icons">
+      <li><router-link to="/myinfo">myinfo</router-link></li>
+      <li><GoogleLogin /></li></ul>
   </nav>
 </template>
 <script>
 import GoogleLogin from "@/components/GoogleLogin";
 export default {
-
   components:{
     GoogleLogin
   },
+  data(){
+    return {
+      isOpen: false
+    }
+  },
   methods:{
     openMenu(){
-      // const toggleBtn = document.querySelector('.navbar_togglebtn')
-      const menu = document.querySelector('.navbar_menu');
-      menu.classList.toggle('active');
-      console.log("open");
-
+      this.isOpen = !this.isOpen
     }
   }
 }</script>
@@ -35,41 +41,59 @@ export default {
   justify-content: space-between;
   align-items:center ;
   background-color:black;
-  padding: 8px 12px;
+  padding: 8px;
   color: white;
+  font-size: 1.5rem;
+
 }
 .navbar_logo{
-  font-size: 24px;
+  font-size: 20px;
+  color: white;
 }
-.navbar_logo{color: white}
 .navbar_menu{
   display: flex;
   list-style: none;
-  padding-left: 0;
 }
+.navbar_icons{
+  display: flex;
+  list-style: none;
+ margin-left: 5px ;
+}
+
+.mobile_navbar_menu{
+ display: none;
+}
+  .navbar_togglebtn {
+    display: none;
+  }
+.mobile_navbar_menu{display: none;}
 @media screen and (max-width: 872px) {
   .navbar{
    flex-direction: column;
-    align-items: flex-start;
-    padding: 8px 24px;
+    justify-content:center;
+    padding: 0.2rem;
+    font-size: 1.5rem;
   }
   .navbar_menu{
+    display: none;
+  }
+  .mobile_navbar_menu{
+    display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    display: none;
   }
   .nav_menu li{
     width: 100%;
     text-align: center;
   }
   .navbar_icons{
-    justify-content: center;
-    width: 100%;
     display: none;
   }
   .navbar_togglebtn{
+    cursor: pointer;
     display: block;
+    width: 10%;
   }
 
 }

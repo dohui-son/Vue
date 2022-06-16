@@ -1,67 +1,83 @@
 <template>
-<!--  v-if directive will only render a block if the value passed to it is truthy // can also attach v-if to a <template> tag-->
+  <!--  v-if directive will only render a block if the value passed to it is truthy // can also attach v-if to a <template> tag-->
   <div class="stack-small" v-if="!isEditing">
     <div class="custom-checkbox">
-      <input type="checkbox" class="checkbox"
-             :id="id" :checked="isDone" @change="$emit('checkbox-changed')" />
-  <!--  윗줄과 동일 문법  <input type="checkbox" id="todo-item" v-bind:checked="isDone" />-->
-      <label :for="id" class="checkbox-label"> {{label}}</label>
+      <input
+        type="checkbox"
+        class="checkbox"
+        :id="id"
+        :checked="isDone"
+        @change="$emit('checkbox-changed')"
+      />
+      <!--  윗줄과 동일 문법  <input type="checkbox" id="todo-item" v-bind:checked="isDone" />-->
+      <label :for="id" class="checkbox-label"> {{ label }}</label>
     </div>
     <div class="btn-group">
-      <button type="button" class="btn"
-              ref="editButton"
-              @click="toggleToItemEditForm">Edit
-        <span class="visually-hidden">{{label}}}</span>
+      <button
+        type="button"
+        class="btn"
+        ref="editButton"
+        @click="toggleToItemEditForm"
+      >
+        Edit
+        <span class="visually-hidden">{{ label }}}</span>
       </button>
-      <button class="btn btn__danger" @click="deleteToDo">Delete
-        <span class="visually-hidden">{{label}}</span>
+      <button class="btn btn__danger" @click="deleteToDo">
+        Delete
+        <span class="visually-hidden">{{ label }}</span>
       </button>
     </div>
   </div>
-  <to-do-item-edit-form v-else :id="id" :label="label" @item-edited="itemEdited" @edit-cancelled="editCancelled" ></to-do-item-edit-form>
+  <to-do-item-edit-form
+    v-else
+    :id="id"
+    :label="label"
+    @item-edited="itemEdited"
+    @edit-cancelled="editCancelled"
+  ></to-do-item-edit-form>
 </template>
 
 <script>
 import ToDoItemEditForm from "@/components/ToDoItemEditForm";
-export  default  {
-  components: {ToDoItemEditForm},
+export default {
+  components: { ToDoItemEditForm },
 
   props: {
-    label: {required: true, type: String},
-    done: {default:false, type:Boolean},
-    id:{required: true, type: String}
+    label: { required: true, type: String },
+    done: { default: false, type: Boolean },
+    id: { required: true, type: String },
   },
-  data(){
-    return{
+  data() {
+    return {
       isDone: this.done,
-      isEditing:false
-    }
+      isEditing: false,
+    };
   },
-  methods:{
-    deleteToDo(){
-      this.$emit('item-deleted');
+  methods: {
+    deleteToDo() {
+      this.$emit("item-deleted");
     },
-    toggleToItemEditForm(){
-      console.log('use REF', this.$refs.editButton);
+    toggleToItemEditForm() {
+      console.log("use REF", this.$refs.editButton);
       this.isEditing = true;
     },
-    itemEdited(newLabel){
-      this.$emit('item-edited', newLabel);
+    itemEdited(newLabel) {
+      this.$emit("item-edited", newLabel);
       this.isEditing = false;
       this.focusOnEditButton();
     },
-    editCancelled(){
+    editCancelled() {
       this.isEditing = false;
       this.focusOnEditButton();
     },
-    focusOnEditButton(){
-      this.$nextTick(()=>{  //Vue components have a special method called $nextTick(). This method accepts a callback function, which then executes after the DOM updates.
+    focusOnEditButton() {
+      this.$nextTick(() => {
+        //Vue components have a special method called $nextTick(). This method accepts a callback function, which then executes after the DOM updates.
         const editButtonRef = this.$refs.editButton;
         editButtonRef.focus();
-      })
-
-    }
-  }
+      });
+    },
+  },
 };
 </script>
 <style scoped>
@@ -76,7 +92,6 @@ export  default  {
   color: lightgray;
   display: block;
   margin-bottom: 5px;
-
 }
 .custom-checkbox > .checkbox {
   font-family: Arial, sans-serif;
@@ -151,7 +166,7 @@ export  default  {
 }
 .custom-checkbox > input[type="checkbox"]:focus + label::before {
   border-width: 4px;
-  outline: 3px dashed #41B883;
+  outline: 3px dashed #41b883;
 }
 .custom-checkbox > label::after {
   box-sizing: content-box;
