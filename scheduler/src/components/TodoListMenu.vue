@@ -31,6 +31,8 @@ import {ref,watch,computed,inject} from 'vue'
 export default {
   name:'TodoListMenu',
   emits:['change-filter'],
+  // emit 사용시 emits Option API에 이벤트명을 선언해줘야함
+
   setup(props,context){
     const filters = inject('filters')
     const filter = ref(0)
