@@ -1,4 +1,8 @@
-<template></template>
+<template>
+  <todo-list-menu v-on:change-filter="onChangeFilter" class="p-0">
+
+  </todo-list-menu>
+</template>
 
 <script>
 import  {ref, provide, inject, watch} from 'vue'
