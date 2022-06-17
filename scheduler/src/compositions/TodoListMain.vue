@@ -62,9 +62,25 @@ export default {
 
     watch(
         [()=>
-        filter.value, todos.value]
-    )
-  }
+        filter.value, todos.value],
+        ([new_filter,new_todos], [old_filter, old_todos]) =>{
+          pending_todos.value = getPendingTodos(todos)
+          if(typeof new_filter != 'undefined'){
+            let temp_todos = filters[new_filter].func(todos)
+            filtered_todos.value = groupBy(temp_todos)
+            use_category.value = filters[new_filter].category
+          }
+        },
+        {immediate: true}
 
+
+        return {
+          filter, pending_todos,filtered_todos,use_category,onChangeFilter,
+        }
+  },
+  components:{
+    TodoList,
+    TodoListMenu
+  },
 }
 </script>
