@@ -4,24 +4,32 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header">{{memberInfo.name}} 님 </slot>
+            <slot name="header">{{ memberInfo.name }} 님 </slot>
           </div>
 
           <div class="modal-body">
             <slot name="body">
               SNS URL
-              <input type="url" autocomplete="off" v-model.lazy.trim="newMyInfo.sns"/>
+              <input
+                type="url"
+                autocomplete="off"
+                v-model.lazy.trim="newMyInfo.sns"
+              />
             </slot>
-            <br/>
+            <br />
             <slot name="body">
               Description
-              <input type="text" autocomplete="off" v-model.lazy.trim="newMyInfo.desc"/>
+              <input
+                type="text"
+                autocomplete="off"
+                v-model.lazy.trim="newMyInfo.desc"
+              />
             </slot>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
-              {{alertMsg}}
+              {{ alertMsg }}
               <button class="modal-default-button" @click="$emit('close')">
                 save
               </button>
@@ -48,22 +56,14 @@ export default {
   data() {
     return {
       newMyInfo: this.memberInfo,
-      alertMsg:""
+      alertMsg: "alert Msg",
     };
   },
-  methods:{
-    submitTest(){
-      if(this.newMyInfo && this.newMyInfo === this.memberInfo){
-        alert("수정된 정보가 없습니다.");
+  methods: {
+    submitTest() {
+      this.$emit("close", this.newMyInfo);
       }
-      else if(this.newMyInfo.sns && this.newMyInfo.sns !== this.memberInfo.sns ){
-        // sns url 검증
-        this.alertMsg="유효한 url을 입력해주세요."
-      }
-
     }
-
-  }
 };
 </script>
 
@@ -107,7 +107,6 @@ export default {
 
 .modal-default-button {
   float: right;
-
 }
 
 .modal-enter-from {

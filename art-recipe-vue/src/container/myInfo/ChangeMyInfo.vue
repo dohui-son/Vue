@@ -1,6 +1,6 @@
 <template>
   <button id="show-modal" @click="changeModal">Change Info</button>
-  <ChangeMyInfoModal :show="showModal" @close="showModal = false" :member-info="memberInfo">
+  <ChangeMyInfoModal :show="showModal" @close="showModal = false"  :member-info="memberInfo">
     <template #header>
       <h3>{{memberInfo.name}} 님</h3>
     </template>
