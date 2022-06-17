@@ -2,7 +2,7 @@
 
 <script>
 import  {ref, provide, inject, watch} from 'vue'
-import  {useFilter} from "../modules/useFilter";
+import  {useFilter} from "./useFilter";
 
 import TodoListMenu from "../components/TodoListMenu";
 import TodoList from "../components/TodoList";
