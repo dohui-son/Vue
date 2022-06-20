@@ -1,3 +1,4 @@
+<!-- TodoListMain컴포넌트 기획 : TodoListMenu로부터 filters의 키값을 받아, 연계된 함수 호출후 요구된 배열을 TodoList에 전달하는 역할-->
 <template>
   <todo-list-menu v-on:change-filter="onChangeFilter" class="p-0">
 
