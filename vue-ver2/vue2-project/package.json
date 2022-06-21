@@ -1,7 +1,7 @@
 {
   "name": "vue2-project",
   "version": "1.0.0",
-  "description": "vue project with the vue version2",
+  "description": "project with vue js version 2",
   "author": "N3N <thsehgml37@korea.ac.kr>",
   "private": true,
   "scripts": {
@@ -13,6 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "typescript": "^4.7.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
@@ -53,6 +54,7 @@
     "selenium-server": "^3.0.1",
     "semver": "^5.3.0",
     "shelljs": "^0.7.6",
+    "ts-loader": "^3.5.0",
     "uglifyjs-webpack-plugin": "^1.1.1",
     "url-loader": "^0.5.8",
     "vue-jest": "^1.0.2",

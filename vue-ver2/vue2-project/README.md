@@ -1,6 +1,6 @@
 # vue2-project
 
-> vue project with the vue version2
+> project with vue js version 2
 
 ## Build Setup
 
