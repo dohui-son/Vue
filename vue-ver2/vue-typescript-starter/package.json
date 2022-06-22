@@ -1,5 +1,5 @@
 {
-  "name": "vue-typscript",
+  "name": "vue-typescript-starter",
   "devDependencies": {
     "css-loader": "^6.7.1",
     "ts-loader": "^9.3.0",
